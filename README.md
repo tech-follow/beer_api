@@ -8,10 +8,11 @@ Cette application permet a des utilisateurs de rentrer une note pour une biere l
 
 Cette api permet aussi de trouver des biere sen fonction de leur degre d'alcool ou d'amertume.
 
-Les specifications se trouvent dans le dossier doc/spec.
+Les specifications se trouvent dans le dossier `doc/spec`.
 
 **Prerequis**
 > Docker et docker compose doivent etre installer sur la machine
+
 > Make aussi doit etre installer
 
 Pour lancer l'initialisation de la stack faire un make setup, les conteneur seront construit et demarrer.
