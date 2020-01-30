@@ -11,4 +11,10 @@ Cette api permet aussi de trouver des biere sen fonction de leur degre d'alcool 
 Les specifications se trouvent dans le dossier doc/spec.
 
 **Prerequis**
-> Avoir php et composer d'installer sur la machine. 
+> Docker et docker compose doivent etre installer sur la machine
+> Make aussi doit etre installer
+
+Pour lancer l'initialisation de la stack faire un make setup, les conteneur seront construit et demarrer.
+une fois lander make vendor provisionnera les vendors.
+
+Pour avoir plus d'informations sur les differentes commande disponible avec make juste faire `make`
