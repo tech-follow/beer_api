@@ -8,7 +8,7 @@ Le modèle métier est composé de 4 entités.
 * Brasserie
 * Checkin
 
-== Detail des entites
+== Detail des entités
 
 === Utilisateur
 
@@ -65,37 +65,37 @@ Le modèle métier est composé de 4 entités.
 
 == Specifications fonctionnelles
 
-Dans un premier temps faire une routine d'import qui injecte le fichiers dans une base de donnees.
+Dans un premier temps faire une routine d'import qui injecte le fichier dans une base de données.
 
-Réaliser une API REST, juste la partie back end testable avec une client http.
+Réaliser une API REST (testable avec un client http).
 
-Il s'agit principalement de realiser les operations CRUD sur les resources definies plus haut.
+Il s'agit principalement de réaliser les opérations CRUD sur les resources définies plus haut.
 
-Lorsque qu'un utilisateur realise un checkin il choisi une biere et une note associee.
+Note pour les checkins : Choisir une bière et une note.
 
-De plus cette api reste doit permettre de pouvoir trouver un certain nombre de classement.
+De plus cette API REST doit permettre de pouvoir trouver un certain nombre de classements :
 
-* Remonter la/les  biere(s) la plus forte.
-* Trouver la/les biere(s) la/les plus amere (IBU)
-* Classement des pays, par nombre de brasserie
-* Classement des style de bieres par nombre de reference.
-* Classement des bieres par taux d'alcool 
+* Remonter la/les bière(s) la/les plus forte(s).
+* Trouver la/les bière(s) la/les plus amère(s) (IBU).
+* Classement des pays, par nombre de brasseries.
+* Classement des styles de bières par nombre de références.
+* Classement des bières par taux d'alcool.
 
 === Non obligatoire
-Realiser l'auhtentification de l'utilisateur via Oauth, JWT ou autre.
+Réaliser l'authentification de l'utilisateur via Oauth, JWT ou autre.
 
-=== Architecture technique
+=== Architecture téchnique
 
-* Language: PHP7
-* Framework: Symfony4 minimum
-* Serveur d'applicatif: Nginx ou Apache au choix.
-* Base de donnees: Mysql, Mariadb, Postgres, ou solution NoSQL.
+* Language : PHP 8
+* Framework : Symfony 5 minimum
+* Serveur applicatif : Nginx ou Apache au choix.
+* Base de données : Mysql, Mariadb, Postgres, ou solution NoSQL.
 
 === Points annexes
 
-Il serait très intéressant :
+Il serait intéressant :
 
-* De disposer d'une documentation auto générée sur un format OpenApi
-* Que les points d'api soit testable via un framework de test
-* D'avoir des temps de réponses assez bas mêmes si la base de données est très chargée.
-* De pouvoir faire en sorte que l'api scale en fonction du traffic.
+* De disposer d'une documentation automatiquement générée sur un format OpenApi.
+* Que les endpoints API soient testables via un framework de test.
+* D'avoir des temps de réponse bas même si la base de données possède une forte volumétrie.
+* De pouvoir faire en sorte que l'API scale en fonction du traffic.
