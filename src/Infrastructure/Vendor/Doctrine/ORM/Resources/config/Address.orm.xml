@@ -1,0 +1,13 @@
+<doctrine-mapping
+  xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+  xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                      https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd"
+>
+  <embeddable name="App\Domain\Model\Address">
+    <field name="street" nullable="true"/>
+    <field name="postalCode" nullable="true"/>
+    <field name="city" nullable="true"/>
+    <field name="country" nullable="true"/>
+  </embeddable>
+</doctrine-mapping>

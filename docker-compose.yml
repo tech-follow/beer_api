@@ -1,17 +1,16 @@
-version: '3'
-
 networks:
-    back:
+    back: ~
+
+volumes:
+    db-data: ~
 
 services:
     mysql:
-        container_name: ${COMPOSE_PROJECT_NAME}_mysql
-        build:
-            dockerfile: .infra/docker/mysql/Dockerfile
-            context: .
+        image: mysql:${DATABASE_SERVER_VERSION:-lts}
         networks:
             - back
-        command: --default-authentication-plugin=mysql_native_password
+        volumes:
+            - db-data:/var/lib/mysql
         environment:
             MYSQL_ROOT_PASSWORD: ${DATABASE_ROOT_PASSWORD}
             MYSQL_DATABASE: ${DATABASE_NAME}
@@ -27,12 +26,11 @@ services:
             retries: 5
 
     nginx:
-        container_name: ${COMPOSE_PROJECT_NAME}_nginx
         image: nginx:latest
         networks:
             - back
         links:
-            - php
+            - api
         volumes:
             - ./.infra/docker/nginx:/etc/nginx/conf.d:delegated
             - .:/app:delegated
@@ -44,22 +42,30 @@ services:
             NGINX_ROOTDIR: /app/public
         command: /bin/bash -c "envsubst '$$NGINX_SERVERNAME $$NGINX_ROOTDIR' < /etc/nginx/conf.d/beer.template > /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"
 
-    php:
-        container_name: ${COMPOSE_PROJECT_NAME}_php
+    api:
         build:
             dockerfile: .infra/docker/php/Dockerfile
             context: .
+            target: api
         networks:
             - back
         working_dir: /app
         volumes:
             - .:/app
-        user: 1000:www-data
-        environment:
-            DATABASE_HOST: ${DATABASE_HOST}
-            DATABASE_PORT: ${DATABASE_PORT}
-            DATABASE_NAME: ${DATABASE_NAME}
-            DATABASE_USER: ${DATABASE_USER}
-            DATABASE_PASSWORD: ${DATABASE_PASSWORD}
-            DATABASE_ROOT_PASSWORD: ${DATABASE_PASSWORD}
-            APP_DOMAIN: ${APP_DOMAIN}
+        env_file: .env
+        depends_on:
+            mysql: { condition: service_healthy }
+
+    php:
+        build:
+            dockerfile: .infra/docker/php/Dockerfile
+            context: .
+            target: cli
+        networks:
+            - back
+        working_dir: /app
+        volumes:
+            - .:/app
+        env_file: .env
+        deploy:
+            replicas: 0

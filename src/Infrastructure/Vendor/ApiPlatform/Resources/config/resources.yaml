@@ -1,0 +1,5 @@
+resources:
+  App\Domain\Model\Beer: ~
+  App\Domain\Model\Brewer: ~
+  App\Domain\Model\User: ~
+  App\Domain\Model\Beer\Checkin: ~

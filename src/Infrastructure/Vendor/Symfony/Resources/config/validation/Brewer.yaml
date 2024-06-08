@@ -1,0 +1,7 @@
+App\Domain\Model\Brewer:
+    properties:
+        name:
+            - NotBlank: ~
+
+        address:
+            - Valid: ~

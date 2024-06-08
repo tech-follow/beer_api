@@ -1,0 +1,14 @@
+App\Domain\Model\Beer:
+    properties:
+        name:
+            - NotBlank: ~
+
+        abvValue:
+            - NotBlank: ~
+            - Type: { type: float }
+            - Range: { min: 0.0, max: 10.0 }
+
+        ibuValue:
+            - NotBlank: ~
+            - Type: { type: float }
+            - Range: { min: 0.0, max: 10.0 }

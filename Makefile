@@ -27,6 +27,9 @@ stop: ## Arrete les conteneurs docker
 destroy: ## Arretes les conteneurs en detruisant les conteneurs, volumes et network associee.
 	docker compose -f docker-compose.yml  down --volumes
 
+migrate:
+	docker compose run --rm php bin/console doctrine:migrations:migrate
+
 composer.lock: composer.json ## Composer update
 	docker run --rm -v ${PWD}:/app composer:latest composer update --with-dependencies --no-interaction --ignore-platform-reqs
 

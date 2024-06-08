@@ -1,0 +1,29 @@
+<doctrine-mapping
+  xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+  xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                      https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd"
+>
+  <entity name="App\Domain\Model\Beer">
+    <id name="id" type="ulid">
+      <generator strategy="CUSTOM"/>
+      <custom-id-generator class="doctrine.ulid_generator"/>
+    </id>
+
+    <field name="createdAt"/>
+    <field name="updatedAt"/>
+    <field name="name"/>
+    <field name="abvValue"/>
+    <field name="ibuValue"/>
+
+    <field name="importId" unique="true" nullable="true">
+      <options>
+        <option name="unsigned">true</option>
+      </options>
+    </field>
+
+    <many-to-one field="brewer" target-entity="App\Domain\Model\Brewer">
+      <join-column nullable="true"/>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

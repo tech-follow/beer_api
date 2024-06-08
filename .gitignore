@@ -1,2 +1,5 @@
 /vendor/
-.idea/
+/var/
+/public/bundles/
+
+/.env

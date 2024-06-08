@@ -1,0 +1,14 @@
+App\Domain\Model\User:
+    properties:
+        email:
+            - NotBlank: ~
+            - Email: ~
+
+        password:
+            - NotBlank: ~
+
+        nickname:
+            - NotBlank: ~
+
+        avatarUrl:
+            - Url: ~

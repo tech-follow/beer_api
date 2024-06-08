@@ -1,0 +1,4 @@
+parameters:
+    app.secret: '%env(string:APP_SECRET)%'
+    app.db.url: '%env(string:DATABASE_PDO_DRIVER)%://%env(string:DATABASE_USER)%:%env(string:DATABASE_PASSWORD)%@%env(string:DATABASE_HOST)%:%env(int:DATABASE_PORT)%/%env(string:DATABASE_NAME)%?serverVersion=%env(string:DATABASE_SERVER_VERSION)%&charset=utf8mb4'
+

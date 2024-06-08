@@ -1,0 +1,15 @@
+services:
+    _defaults:
+         autowire: true
+         autoconfigure: true
+
+    App\:
+         resource: '%kernel.project_dir%/src'
+         exclude:
+            - '%kernel.project_dir%/src/Infrastructure/Vendor'
+            - '%kernel.project_dir%/src/**/Model'
+            - '%kernel.project_dir%/src/**/Resources'
+
+    App\Adapter\UI\HTTP\Action\:
+        resource: '%kernel.project_dir%/src/Adapter/UI/HTTP/Action'
+        public: true

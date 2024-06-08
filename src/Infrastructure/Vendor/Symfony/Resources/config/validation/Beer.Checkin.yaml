@@ -1,0 +1,12 @@
+App\Domain\Model\Beer\Checkin:
+    properties:
+        beer:
+            - NotBlank: ~
+
+        user:
+            - NotBlank: ~
+
+        note:
+            - NotBlank: ~
+            - Type: { type: float }
+            - Range: { min: 0.0, max: 10.0 }

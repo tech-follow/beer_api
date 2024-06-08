@@ -1,4 +1,11 @@
-FROM php:8.2-fpm-bullseye
+################################################################################
+
+FROM composer:2.7.6 AS composer
+
+################################################################################
+
+FROM php:8.3-fpm-bullseye AS base
+
 RUN usermod -u 1000 www-data
 
 WORKDIR "/app"
@@ -41,13 +48,21 @@ RUN docker-php-ext-enable \
     apcu \
     opcache
 
-ENV COMPOSER_ALLOW_SUPERUSER=1
-ENV COMPOSER_MEMORY_LIMIT=-1
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir /usr/local/bin --filename composer --2
-RUN composer --version
+COPY --from=composer /usr/bin/composer /usr/bin/composer
 
 COPY .infra/docker/php/php.ini /usr/local/etc/php/conf.d/php.ini
 
 RUN chown -R www-data:www-data /app
+USER 1000
+
+################################################################################
+
+FROM base AS api
 
 CMD ["php-fpm"]
+
+################################################################################
+
+FROM base AS cli
+
+################################################################################
